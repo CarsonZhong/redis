@@ -38,19 +38,19 @@ typedef struct listNode {
     struct listNode *next;
     void *value;
 } listNode;
-
+/* 迭代器数据结构， 包含了访问方向 */
 typedef struct listIter {
     listNode *next;
     int direction;
 } listIter;
-
+/* 表头数据结构 */
 typedef struct list {
     listNode *head;
     listNode *tail;
-    void *(*dup)(void *ptr);
-    void (*free)(void *ptr);
-    int (*match)(void *ptr, void *key);
-    unsigned long len;
+    void *(*dup)(void *ptr); /* 拷贝方法，定义为指针，类似于多肽，不同的链表可以不同的方法*/
+    void (*free)(void *ptr); /* 释放节点方法 */
+    int (*match)(void *ptr, void *key); /* 查找方法 */
+    unsigned long len; /* 链表长度 */
 } list;
 
 /* Functions implemented as macros */
